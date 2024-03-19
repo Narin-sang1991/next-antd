@@ -45,6 +45,7 @@ const Home = function Home() {
             alt='Ant Design'
           />
 
+          <Button type='primary' loading={status === "loading"} onClick={() => dispatch(incrementAsync(2))}>Increment-Async</Button>
           <Button type='primary' onClick={() => dispatch(increment())}>Increment</Button>
           <Button type='dashed' danger onClick={() => dispatch(decrement())}>Decrement</Button>
           <Title level={2} style={{ marginBottom: 0 }}>
