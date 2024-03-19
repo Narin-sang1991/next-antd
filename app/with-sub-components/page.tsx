@@ -7,25 +7,34 @@
 // More about without sub-components example see: src/app/page.tsx
 "use client";
 
+
+import { useState } from "react";
 import {
-  Form,
-  Select,
-  InputNumber,
-  DatePicker,
-  Switch,
-  Slider,
-  Button,
-  Rate,
-  Typography,
-  Space,
-  Divider,
+  Form, Select, InputNumber,
+  DatePicker, Switch, Slider,
+  Button, Rate, Typography,
+  Space, Divider,
 } from 'antd';
 import withTheme from '../../theme';
+import {
+  decrement, increment,
+  incrementAsync, incrementByAmount, incrementIfOdd,
+  selectCount, selectStatus,
+} from "@/lib/features/counter/counterSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 
 const { Option } = Select;
 const { Title } = Typography;
 
 const Home = function Home() {
+  const dispatch = useAppDispatch();
+  const count = useAppSelector(selectCount);
+  const status = useAppSelector(selectStatus);
+  const [incrementAmount, setIncrementAmount] = useState("2");
+
+  const incrementValue = Number(incrementAmount) || 0;
+
+
   return (
     <>
       <section style={{ textAlign: 'center', marginTop: 48, marginBottom: 40 }}>
@@ -35,8 +44,12 @@ const Home = function Home() {
             src='https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg'
             alt='Ant Design'
           />
+
+          <Button type='primary' onClick={() => dispatch(increment())}>Increment</Button>
+          <Button type='dashed' danger onClick={() => dispatch(decrement())}>Decrement</Button>
           <Title level={2} style={{ marginBottom: 0 }}>
-            Ant Design (With Sub Components)
+            {count}
+            {/* Ant Design (With Sub Components) */}
           </Title>
         </Space>
       </section>

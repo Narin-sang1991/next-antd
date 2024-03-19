@@ -2,6 +2,9 @@ import './globals.css'
 import React from 'react';
 import { Inter } from 'next/font/google'
 import { AntdRegistry } from '@ant-design/nextjs-registry';
+// import { Provider } from 'react-redux';
+// import { store } from './redux/store';
+import { StoreProvider } from './StoreProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,10 +20,15 @@ export default function RootLayout({
 }) {
 
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <AntdRegistry>{children}</AntdRegistry>
-      </body>
-    </html>
+    // <Provider store={store}>
+    <StoreProvider>
+      <html lang="en">
+        <body className={inter.className}>
+          <AntdRegistry>
+            {children}
+          </AntdRegistry>
+        </body>
+      </html>
+    </StoreProvider>
   )
 }
