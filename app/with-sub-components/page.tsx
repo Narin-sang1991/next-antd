@@ -20,8 +20,8 @@ import {
   decrement, increment,
   incrementAsync, incrementByAmount, incrementIfOdd,
   selectCount, selectStatus,
-} from "@/lib/features/counter/counterSlice";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+} from "@/store/features/counter/counterSlice";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 
 const { Option } = Select;
 const { Title } = Typography;
