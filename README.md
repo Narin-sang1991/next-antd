@@ -15,3 +15,7 @@ yarn add antd
 
 # install redux toolkit package
 yarn add react-redux @reduxjs/toolkit redux
+
+# vs-code extension
+Typescript React code snippets
+short-command : tsrpfc => create react type-scripy pure function 
