@@ -2,7 +2,7 @@ import './globals.css'
 import React from 'react';
 import { Inter } from 'next/font/google'
 import { AntdRegistry } from '@ant-design/nextjs-registry';
-import { StoreProvider } from './StoreProvider'
+import { StoreProvider } from './store.provider'
 import MenuLayout from './MenuLayout'
 
 const inter = Inter({ subsets: ['latin'] })

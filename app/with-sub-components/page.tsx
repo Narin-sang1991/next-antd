@@ -20,7 +20,7 @@ import {
   decrement, increment,
   incrementAsync, incrementByAmount, incrementIfOdd,
   selectCount, selectStatus,
-} from "@/store/features/counter/counterSlice";
+} from "@/store/counter/counterSlice";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 
 const { Option } = Select;
