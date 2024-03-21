@@ -1,5 +1,5 @@
 import { createAppSlice } from "@/store/createAppSlice";
-import type { PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { fetchSearch } from "@/services/company.provider";
 import type { CompanyReponse } from "@/store/company/companyModel";
 
@@ -17,29 +17,26 @@ const initialState: CompanySliceState = {
   status: "idle",
 };
 
-
 export const companySlice = createAppSlice({
   name: "company",
   initialState,
-
   reducers: (create) => ({
 
     searchAsync: create.asyncThunk(
       async (body: any) => {
         const response = await fetchSearch(body);
-        console.log("redux-response-->", response);
+        // console.log("redux-response-->", response);
         return response;
       },
       {
-        pending: (state, action) => {
-          console.log("redux-pending-->", action.payload);
+        pending: (state) => {
+          // console.log("redux-pending-->", action.payload);
           state.status = "loading";
         },
-        fulfilled: (state, action) => {
-          console.log("redux-fulfilled-->", action.payload);
-          // const payload: { data: CompanyReponse } = action.payload;
+        fulfilled: (state, action: PayloadAction<CompanyReponse>) => {
+          // console.log("redux-fulfilled-->", action.payload);
           state.status = "idle";
-          // state.searchResult = payload;
+          state.searchResult = action.payload;
         },
         rejected: (state) => {
           state.status = "failed";
@@ -53,6 +50,7 @@ export const companySlice = createAppSlice({
     selectResult: (company) => company.searchResult,
     selectStatus: (company) => company.status,
   },
+
 });
 
 export const { searchAsync } = companySlice.actions;

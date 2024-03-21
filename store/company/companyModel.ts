@@ -12,6 +12,6 @@ export type Company = {
 export interface CompanyReponse {
     TotalItem: number;
     TotalPage: number;
-    Items?: Company[];
+    Items?:  Company[];
 }
 

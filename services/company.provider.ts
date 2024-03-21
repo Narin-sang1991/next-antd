@@ -1,10 +1,12 @@
 
-import type { CompanyReponse } from "@/store/company/companyModel";
 import { axiosProvider } from "./axios.interceptor";
+import * as serializer from "./criteria.serializer";
+import type { CompanyReponse } from "@/store/company/companyModel";
 
 const modulePath: string = '/api/EntityModule'
 
-export const fetchSearch = async (body: any) => {
+export const fetchSearch = async (criteria: any) => {
+    let body = serializer.SerializeCriteria({ criteria, defaultSorting: "CompanyCode" });
     const apiResult = await axiosProvider.post(`${modulePath}/MasterCompany/Search/v1`, body)
         .then((response) => {
             const result: { data: CompanyReponse } = response;
