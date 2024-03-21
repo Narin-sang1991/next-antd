@@ -4,14 +4,19 @@ import { fetchSearch } from "@/services/company.provider";
 import type { CompanyReponse } from "@/store/company/companyModel";
 
 export interface CompanySliceState {
-  searchResult?: CompanyReponse;
+  searchResult: CompanyReponse;
   status: "idle" | "loading" | "failed";
 }
 
 const initialState: CompanySliceState = {
-  searchResult: undefined,
+  searchResult: {
+    TotalItem: 0,
+    TotalPage: 0,
+    Items: undefined
+  },
   status: "idle",
 };
+
 
 export const companySlice = createAppSlice({
   name: "company",
@@ -20,17 +25,21 @@ export const companySlice = createAppSlice({
   reducers: (create) => ({
 
     searchAsync: create.asyncThunk(
-      async (amount: number) => {
-        const response = await fetchSearch();
-        return response.data;
+      async (body: any) => {
+        const response = await fetchSearch(body);
+        console.log("redux-response-->", response);
+        return response;
       },
       {
-        pending: (state) => {
+        pending: (state, action) => {
+          console.log("redux-pending-->", action.payload);
           state.status = "loading";
         },
         fulfilled: (state, action) => {
+          console.log("redux-fulfilled-->", action.payload);
+          // const payload: { data: CompanyReponse } = action.payload;
           state.status = "idle";
-          state.searchResult = action.payload;
+          // state.searchResult = payload;
         },
         rejected: (state) => {
           state.status = "failed";

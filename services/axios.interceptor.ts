@@ -34,12 +34,12 @@ const axiosProvider = axios.create(config);
 
 axiosProvider.interceptors.response.use(
     function (response) {
-        return response;
+        return response.data;
     }, function (error) {
-        // if (error.response.status === 500)
-        //     message.error(`${error.response.status} : ${error.response.statusText}`)
-        // else
-        //     message.warning(error.response.data ? error.response.data.error : error.response.statusText)
+        if (error.response.status === 500)
+            message.error(`${error.response.status} : ${error.response.statusText}`)
+        else
+            message.warning(error.response.data ? error.response.data.error : error.response.statusText)
 
         return Promise.reject(error)
     })

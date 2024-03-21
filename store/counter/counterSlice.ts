@@ -49,13 +49,16 @@ export const counterSlice = createAppSlice({
       },
       {
         pending: (state) => {
+          console.log("<--redux-pending-->");
           state.status = "loading";
         },
         fulfilled: (state, action) => {
+          console.log("redux-fulfilled-->", action.payload);
           state.status = "idle";
           state.value += action.payload;
         },
         rejected: (state) => {
+          console.log("<--redux-failed-->")
           state.status = "failed";
         },
       },
