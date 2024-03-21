@@ -1,4 +1,4 @@
-import { createAppSlice } from "./createAppSlice";
+import { createAppSlice } from "@/store/createAppSlice";
 import type { AppThunk } from "@/store/store";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { fetchCount } from "@/services/counter.provider";
