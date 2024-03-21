@@ -14,7 +14,7 @@ import { message } from 'antd';
 // function addSubscriber(callback) {
 //     subscribers.push(callback)
 // }
-const baseDomain: string = 'http://localhost:18056'
+const baseDomain: string = 'https://app-gulf-centralized-staging-api.azurewebsites.net'
 const config: AxiosRequestConfig = {
     baseURL: baseDomain,
     // mode: 'cors',
